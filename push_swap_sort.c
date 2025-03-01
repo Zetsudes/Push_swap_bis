@@ -16,7 +16,7 @@
 #include "push_swap.h"
 
 
-void	sort(t_stack *a, t_stack *b)
+void	sort(t_stack **a, t_stack **b)
 {
 	int size;
 
@@ -25,7 +25,7 @@ void	sort(t_stack *a, t_stack *b)
 		return ;
 	if (size == 2)
 	{
-		swap_a(a);
+		swap_a(*a);
 		return ;
 	}
 	if (size == 3)
@@ -35,7 +35,7 @@ void	sort(t_stack *a, t_stack *b)
 	}
 	if (size == 4)
 	{
-		sort_four(&a, &b);
+		sort_four(a, b);
 		return ;
 	}
 	if (size == 5)
@@ -43,59 +43,58 @@ void	sort(t_stack *a, t_stack *b)
 		sort_five(a, b);
 		return ;
 	}
-	radix_sort(&a, &b);
+	radix_sort(a, b);
 }
 
-void	sort_three(t_stack *stack)
-{
-	int first;
-	int second;
-	int third;
+void sort_three(t_stack **stack) {
+    int first;
+    int second;
+    int third;
 
-	if (!stack || !stack->next || !stack->next->next)
-		return ;
-	first = stack->value;
-	second = stack->next->value;
-	third = stack->next->next->value;
-	if (first > second && second < third && first < third)
-		swap_a(stack);
-	else if (first > second && second > third)
-	{
-		swap_a(stack);
-		reverse_rotate_a(&stack);
-	}
-	else if (first > second && second < third && first > third)
-		rotate_a(&stack);
-	else if (first < second && second > third && first < third)
-	{
-		swap_a(stack);
-		rotate_a(&stack);
-	}
-	else if (first < second && second > third && first > third)
-		reverse_rotate_a(&stack);
+    if (!stack || !*stack || !(*stack)->next || !(*stack)->next->next)
+        return;
+        
+    first = (*stack)->value;
+    second = (*stack)->next->value;
+    third = (*stack)->next->next->value;
+
+    if (first > second && second < third && first < third)
+        swap_a(*stack);
+    else if (first > second && second > third) {
+        swap_a(*stack);
+        reverse_rotate_a(stack);
+    }
+    else if (first > second && second < third && first > third)
+        rotate_a(stack);
+    else if (first < second && second > third && first < third) {
+        swap_a(*stack);
+        rotate_a(stack);
+    }
+    else if (first < second && second > third && first > third)
+        reverse_rotate_a(stack);
 }
 
 void	sort_four(t_stack **a, t_stack **b)
 {
-	if (is_sorted(*a))
+	if (is_sorted(a))
 		return ;
 
 	move_min_to_b(a, b);
 
-	sort_three(*a);
+	sort_three(a);
 
 	push_to_a(a, b);
 }
 
-void	sort_five(t_stack *a, t_stack *b)
+void	sort_five(t_stack **a, t_stack **b)
 {
-	move_min_to_b(&a, &b);
-	move_min_to_b(&a, &b);
+	move_min_to_b(a, b);
+	move_min_to_b(a, b);
 
 	sort_three(a);
 
-	push_to_a(&a, &b);
-	push_to_a(&a, &b);
+	push_to_a(a, b);
+	push_to_a(a, b);
 }
 
 /* void	sort_big(Stack *a, Stack *b)

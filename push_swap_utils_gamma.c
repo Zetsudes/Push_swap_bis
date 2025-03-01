@@ -22,15 +22,28 @@ int	get_min_index(t_stack *a)
 	return (min_index);
 }
 
-int	stack_size(t_stack *stack)
+int	stack_size(t_stack **stack)
 {
 	int	size;
+	t_stack *tmp; 
 
 	size = 0;
-	while (stack)
+	tmp = *stack;
+	while (tmp)
 	{
 		size++;
-		stack = stack->next;
+		tmp = tmp->next;
 	}
 	return (size);
+}
+
+void print_stack(t_stack *stack)
+{
+    t_stack *current = stack;
+    while (current)
+    {
+        printf("%d ", current->value);
+        current = current->next;
+    }
+    printf("\n");
 }

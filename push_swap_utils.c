@@ -22,27 +22,28 @@ int	handle_error(void)
 	return (1);
 }
 
-int	has_duplicate(t_stack *s, int num)
-{
-	while (s)
-	{
-		if (s->value == num)
-			return (1);
-		s = s->next;
-	}
-	return (0);
+int has_duplicate(t_stack *stack, int value) {
+    t_stack *current = stack;
+    
+    while (current) {
+        if (current->value == value)
+            return 1;
+        current = current->next;
+    }
+    return 0;
 }
 
-int	is_sorted(t_stack *a)
-{
-	while (a && a->next)
-	{
-		if (a->value > a->next->value)
-			return (0);
-		a = a->next;
-	}
-	return (1);
+int is_sorted(t_stack **stack) {
+    t_stack *current = *stack;
+    
+    while (current && current->next) {
+        if (current->value > current->next->value)
+            return 0;
+        current = current->next;
+    }
+    return 1;
 }
+
 
 int	is_number(char *str)
 {

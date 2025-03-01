@@ -39,6 +39,8 @@ void	push(t_stack **stack, t_stack **new);
 void	push_to_a(t_stack **b, t_stack **a);
 void	push_to_b(t_stack **a, t_stack **b);
 void	free_stack(t_stack **stack);
+void print_stack(t_stack *stack);
+void reverse_stack(t_stack **stack);
 
 int	get_nb_bits(unsigned int nb, int pos);
 void	radix_sort(t_stack **a, t_stack **b);
@@ -58,24 +60,25 @@ void	reverse_rotate_a(t_stack **a);
 void	reverse_rotate_b(t_stack **b);
 void	reverse_rotate_both(t_stack **a, t_stack **b);
 
-void	sort(t_stack *a, t_stack *b);
-void	sort_three(t_stack *a);
+void	sort(t_stack **a, t_stack **b);
+void sort_three(t_stack **stack);
 /* void	sort_big(t_stack *a, t_stack *b); */
 void	sort_four(t_stack **a, t_stack **b);
-void	sort_five(t_stack *a, t_stack *b);
+void	sort_five(t_stack **a, t_stack **b);
 
 int	handle_error(void);
 int	has_duplicate(t_stack *s, int num);
 int	is_number(char *str);
-int	is_sorted(t_stack *s);
+int	is_sorted(t_stack **s);
 /* int	find_median(t_stack *s); */
 
 /* int	get_max(t_stack *stack); */
+int get_max(t_stack *stack);
 int	get_min(t_stack *stack);
 int	get_pos(t_stack *stack, int num);
 void	move_min_to_b(t_stack **a, t_stack **b);
 /* int	get_rank(t_stack *a, int value); */
-int	stack_size(t_stack *stack);
+int	stack_size(t_stack **stack);
 
 int	get_min_index(t_stack *a);
 

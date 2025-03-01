@@ -46,28 +46,36 @@ int	get_nb_bits(unsigned int nb, int pos)
 	return ((nb >> pos) & 1);
 }
 
-void	radix_sort(t_stack **a, t_stack **b)
+void radix_sort(t_stack **a, t_stack **b)
 {
-	int len_stack;
-	int pos;
-	int i;
+    int len_stack;
+    int pos;
+    int i;
+    int max_num;
+    int max_bits;
+    t_stack *tmp;
 
-	len_stack = stack_size(*a);
-	pos = 0;
-	i = 0;
+    len_stack = stack_size(a);
+    tmp = *a;
+    max_num = get_max(tmp);
+    max_bits = 0;
+    while ((max_num >> max_bits) != 0)
+        max_bits++;
 
-	while (!is_sorted(*a) && pos < 32)
-		while (i < len_stack)
-		{
-			if (get_nb_bits((*a)->value, pos))
-				rotate_a(a);
-			else
-				push_to_b(a, b);
-			i++;
-		}
-
-	while (*b)
-		push_to_a(a, b);
-
-	pos++;
+    pos = 0;
+    while (pos < max_bits)
+    {
+        i = 0;
+        while (i < len_stack)
+        {
+            if (get_nb_bits((*a)->value, pos))
+                rotate_a(a);
+            else
+                push_to_b(a, b);
+            i++;
+        }
+        while (*b)
+            push_to_a(b, a);
+        pos++;
+    }
 }

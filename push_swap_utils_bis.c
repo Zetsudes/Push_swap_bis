@@ -16,21 +16,15 @@
 #include "push_swap.h"
 
 
-/* int	get_max(t_stack *stack)
-{
-	int max;
-	int i;
-
-	i = 0;
-	max = stack->stack[0];
-	while (i <= stack->top)
-	{
-		if (stack->stack[i] > max)
-			max = stack->stack[i];
-		i++;
-	}
-	return (max);
-} */
+int get_max(t_stack *stack) {
+    int max = stack->value;
+    while (stack) {
+        if (stack->value > max)
+            max = stack->value;
+        stack = stack->next;
+    }
+    return max;
+}
 
 int	get_min(t_stack *stack)
 {
@@ -74,7 +68,7 @@ void	move_min_to_b(t_stack **a, t_stack **b)
 
 	min = get_min(*a);
 	pos = get_pos(*a, min);
-	size = stack_size(*a);
+	size = stack_size(a);
 
 	if (pos <= size / 2)
 	{
