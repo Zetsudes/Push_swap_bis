@@ -33,17 +33,9 @@ typedef struct s_stack
 	struct s_stack *prev;
 } t_stack;
 
-/* void	init_stack(Stack *s); */
-
 void	push(t_stack **stack, t_stack **new);
 void	push_to_a(t_stack **b, t_stack **a);
 void	push_to_b(t_stack **a, t_stack **b);
-void	free_stack(t_stack **stack);
-void print_stack(t_stack *stack);
-void reverse_stack(t_stack **stack);
-
-int	get_nb_bits(unsigned int nb, int pos);
-void	radix_sort(t_stack **a, t_stack **b);
 
 void	swap(t_stack *stack);
 void	swap_a(t_stack *a);
@@ -61,25 +53,33 @@ void	reverse_rotate_b(t_stack **b);
 void	reverse_rotate_both(t_stack **a, t_stack **b);
 
 void	sort(t_stack **a, t_stack **b);
-void sort_three(t_stack **stack);
-/* void	sort_big(t_stack *a, t_stack *b); */
+void 	sort_three(t_stack **stack);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
+void	radix_sort(t_stack **a, t_stack **b);
 
-int	handle_error(void);
-int	has_duplicate(t_stack *s, int num);
-int	is_number(char *str);
-int	is_sorted(t_stack **s);
-/* int	find_median(t_stack *s); */
+void	free_stack(t_stack **stack);
+void 	reverse_stack(t_stack **stack);
+int		get_nb_bits(unsigned int nb, int pos);
+int 	push_node(t_stack **a, int num);
+void 	free_split_args(char **args);
 
-/* int	get_max(t_stack *stack); */
-int get_max(t_stack *stack);
-int	get_min(t_stack *stack);
-int	get_pos(t_stack *stack, int num);
+int		handle_error(void);
+int		has_duplicate(t_stack *s, int num);
+int		is_number(char *str);
+int		is_sorted(t_stack **s);
+int 	validate_input(t_stack *a, char *arg);
+
+int 	get_max(t_stack *stack);
+int		get_min(t_stack *stack);
+int		get_pos(t_stack *stack, int num);
+int		stack_size(t_stack **stack);
 void	move_min_to_b(t_stack **a, t_stack **b);
-/* int	get_rank(t_stack *a, int value); */
-int	stack_size(t_stack **stack);
 
-int	get_min_index(t_stack *a);
+char    **split_input(int argc, char *arg);
+int     handle_split_args(char **split_args, t_stack **a);
+int     handle_individual_args(int argc, char **argv, t_stack **a);
+int     validate_and_push_args(int argc, char **argv, t_stack **a);
+int     validate_and_push(t_stack **a, char *arg);
 
 #endif

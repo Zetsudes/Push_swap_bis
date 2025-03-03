@@ -18,14 +18,15 @@ CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror -fPIE
 
 SRC = push_swap.c \
-      push_swap_utils.c \
-	  push_swap_utils_bis.c \
-	  push_swap_utils_gamma.c \
-	  push_swap_sort.c \
+      parsing.c \
+	  sorting_utils.c \
+	  utils.c \
+	  sort.c \
       push.c \
       swap.c \
       rotate.c \
-      reverse_rotate.c
+      reverse_rotate.c \
+	  handle_argv.c \
 
 OBJ = $(SRC:.c=.o)
 NAME = push_swap
